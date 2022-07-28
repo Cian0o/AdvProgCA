@@ -1,0 +1,56 @@
+
+
+@import url("module_header.css");
+@import url("module_homepage.css");
+@import url("module_banners.css");
+@import url("module_sidebar.css");
+@import url("module_maincontent.css");
+@import url("module_cma.css");
+@import url("module_colours.css");
+@import url("module_footer.css");
+@import url("jquery-ui-1.7.1.custom.css");
+@import url("module_lightbox.css");
+@import url("module_report.css");
+@import url("module_news.css");
+@import url("fancybox/jquery.fancybox.css");
+
+
+
+* { margin: 0; padding: 0; }
+
+body { 
+    font-size: 15px;
+    font-family: 'proxima-nova', sans-serif;
+}
+img { border: 0; }
+input, select, textarea { font: 1.0em Arial, sans-serif; } 
+h1, h2, h3, h4, h5, h6 { font-size: 1.0em; } 
+
+div.clearer { clear: both; height: 0; line-height: 0px; font-size: 0; } 
+
+.center { text-align: center !important; }
+.left { text-align: left !important; }
+.right {text-align: right !important; }
+.float_left { float: left !important; }
+.float_right { float: right !important; }
+
+.h_25  { height: 25px !important; }
+.h_50  { height: 50px !important; }
+.h_75  { height: 75px !important; }
+.h_100 { height: 100px !important; }
+.h_125 { height: 125px !important; }
+.h_150 { height: 150px !important; }
+.h_200 { height: 200px !important; }
+.h_250 { height: 250px !important; }
+.h_300 { height: 300px !important; }
+.h_350 { height: 350px !important; }
+.h_400 { height: 400px !important; }
+
+#wrapper { text-align: left;  }
+
+
+.LoginError { padding-left:55px; color:Red;}
+
+
+
+
