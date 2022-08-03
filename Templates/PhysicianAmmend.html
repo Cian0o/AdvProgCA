@@ -8,7 +8,7 @@
 
 
 	<title>
-		Submission Successful | Physician
+		Get Prescription | Pharmacy
 	</title>
 				<style>
 
@@ -26,6 +26,10 @@
 
 			<a href="PhysicianPrescribe.html">
 			<li class="nav_bar_links">Submit Prescription</li>
+			</a>
+
+			<a href="PhysicianAmmend.html">
+			<li class="nav_bar_links">Ammend Prescription</li>
 			</a>
 
 			<a href="PharmacyRetrieve.html">
@@ -48,7 +52,16 @@
 	<div id="wrapper">
 
 
-		<p> The Prescription you submitted is: </p>
+		<form id="form" method="GET" action="GetPrescription.html">
+
+
+					<input type="number" name="fullname" placeholder="Prescription No."><br>
+
+
+					<a href = "GetPrescription2Ammend.html">
+					<input type="submit" value="Submit" >
+						</a>
+				</form>
 
 
 
