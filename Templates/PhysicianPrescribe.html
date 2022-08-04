@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="assets/main.css">
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='main.css') }}">
 
 
 	<title>
@@ -44,7 +44,7 @@
 			<li class="nav_bar_links_active">Register Pharmacy</li>
 			</a>
 
-				<a href="index.html"><img id="logo" src="assets/Logo.jpeg" alt="MyPharma"></a>
+				<a href="index.html"><img id="logo" src="Static/Logo.jpeg" alt="MyPharma"></a>
 
 		</ul>
 	</header>
@@ -52,19 +52,19 @@
 	<div id="wrapper">
 
 
-		<form id="form" method="post" action="../index.html">
+		<form action = "http://localhost:5000/GetPrescription.html" method="post">
 
 
-					<input type="number" name="PatientPPSN" placeholder="Patient PPSN"><br>
+					<input type="text" name="PatientPPSN" placeholder="Patient PPSN"><br>
 
-                    <input type="number" name="IMCN" placeholder="Physician IMCN"><br>
+                    <input type="number" name="PhysicianIMCN" placeholder="Physician IMCN"><br>
 
                     <input type="text" name="PatientName" placeholder="Patient Name"><br>
 
                     <textarea type="text" name="PrescriptionContents" placeholder="Prescription Contents"></textarea><br>
 
                     <input type="number" name="PrecriptionFreq" placeholder="Prescription  Frequency (days)"><br>
-					<a href = "PrescriptionSubmitted.html">
+					<a href = "GetPrescription.html">
 					<input type="submit" value="Submit">
 						</a>
 				</form>

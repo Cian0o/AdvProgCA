@@ -4,17 +4,18 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='main.css') }}">
+	<link rel= "stylesheet" type= "text/css" href= "main.css">
 
 
 	<title>
-		Register | Pharmacy
+		Homepage | MyPharma
 	</title>
 				<style>
 
 
 
 </style>
+
 </head>
 <body>
 
@@ -43,10 +44,7 @@
 			<li class="nav_bar_links_active">Register Pharmacy</li>
 			</a>
 
-
-			</a>
-
-				<a href="index.html"><img id="logo" src="Static/Logo.jpeg" alt="MyPharma"></a>
+				<a href="index.html"><img id="logo" src="Logo.jpeg" alt="MyPharma"></a>
 
 		</ul>
 	</header>
@@ -54,24 +52,28 @@
 	<div id="wrapper">
 
 
-		<form id="form" method="get" action="../index.html">
+		<p> Your Prescription is: </p>
 
+		<table border= 12>
 
-					<input type="number" name="fullname" placeholder="PSI Number"><br>
-
-                    <input type="text" name="email" placeholder="Pharmacy Name"><br>
-
-                    <input type="email" name="email" placeholder="Pharmacy Email"><br>
-
-					<input type="number" name="phone" placeholder="Pharmacy Phone"><br>
-
-                    <textarea type="text" name="address" placeholder="Physician/Surgery Address"></textarea><br>
-
-					<input type="submit" value="Submit">
-				</form>
+			<thead>
 
 
 
+			<tr><td>PrescriptionID</td><td>{{row["PrescriptionID"]}}</td></tr>
+			<tr><td>Patient PPSN</td><td>{{row["PatientPPSN"]}}</td></tr>
+            <tr><td>Physician IMCN</td><td>{{row["PhysicianIMCN"]}}</td></tr>
+			<tr><td>Patient Name</td><td>{{row["PatientNAME"]}}</td></tr>
+            <tr><td>Prescription Contents</td><td>{{row["PrescriptionContents"]}}</td></tr>
+			<tr><td>Prescription Frequency (in days)</td><td>{{row["PrescriptionFreqDays"]}}</td></tr>
+
+			</thead>
+
+
+
+
+
+		</table>
 
 
 	</div>
