@@ -8,7 +8,7 @@
 
 
 	<title>
-		Register | Physician / Surgery
+		Prescribe | Physician / Surgery
 	</title>
 				<style>
 
@@ -44,7 +44,7 @@
 			<li class="nav_bar_links_active">Register Pharmacy</li>
 			</a>
 
-				<a href="index.html"><img id="logo" src="Static/Logo.jpeg" alt="MyPharma"></a>
+				<a href="http://localhost:5000 "><img id="logo" src="static/Logo.jpeg" alt="MyPharma"></a>
 
 		</ul>
 	</header>
@@ -52,20 +52,21 @@
 	<div id="wrapper">
 
 
-		<form id="form" method="get" action="../index.html">
+		<form action = "http://localhost:5000/GetPrescription.html" method="POST">
 
 
-					<input type="number" name="fullname" placeholder="Irish Medical Council Number"><br>
+					<input type="text" name="PatientPPSN" placeholder="Patient PPSN"><br>
 
-                    <input type="text" name="email" placeholder="Physician/Surgery Name"><br>
+                    <input type="number" name="PhysicianIMCN" placeholder="Physician IMCN"><br>
 
-                    <input type="email" name="email" placeholder="Physician/Surgery Email"><br>
+                    <input type="text" name="PatientName" placeholder="Patient Name"><br>
 
-					<input type="number" name="phone" placeholder="Physician/Surgery Phone"><br>
+                    <textarea type="text" name="PrescriptionContents" placeholder="Prescription Contents"></textarea><br>
 
-                    <textarea type="text" name="address" placeholder="Physician/Surgery Address"></textarea><br>
-
+                    <input type="number" name="PrecriptionFreq" placeholder="Prescription  Frequency (days)"><br>
+					<a href = "GetPrescription.html">
 					<input type="submit" value="Submit">
+						</a>
 				</form>
 
 

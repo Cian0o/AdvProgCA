@@ -8,7 +8,7 @@
 
 
 	<title>
-		Prescribe | Physician / Surgery
+		Get Prescription | Pharmacy
 	</title>
 				<style>
 
@@ -44,7 +44,7 @@
 			<li class="nav_bar_links_active">Register Pharmacy</li>
 			</a>
 
-				<a href="index.html"><img id="logo" src="Static/Logo.jpeg" alt="MyPharma"></a>
+				<a href="http://localhost:5000 "><img id="logo" src="static/Logo.jpeg" alt="MyPharma"></a>
 
 		</ul>
 	</header>
@@ -52,23 +52,16 @@
 	<div id="wrapper">
 
 
-		<form action = "http://localhost:5000/GetPrescription.html" method="post">
+		<form id="form" method="GET" action="GetPrescription.html">
 
 
-					<input type="text" name="PatientPPSN" placeholder="Patient PPSN"><br>
+					<input type="number" name="fullname" placeholder="Prescription No."><br>
 
-                    <input type="number" name="PhysicianIMCN" placeholder="Physician IMCN"><br>
 
-                    <input type="text" name="PatientName" placeholder="Patient Name"><br>
-
-                    <textarea type="text" name="PrescriptionContents" placeholder="Prescription Contents"></textarea><br>
-
-                    <input type="number" name="PrecriptionFreq" placeholder="Prescription  Frequency (days)"><br>
-					<a href = "GetPrescription.html">
-					<input type="submit" value="Submit">
+					<a href = "GetPrescription2Ammend.html">
+					<input type="submit" value="Submit" >
 						</a>
 				</form>
-
 
 
 
