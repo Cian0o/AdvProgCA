@@ -8,7 +8,7 @@
 
 
 	<title>
-		Prescribe | Physician / Surgery
+		Get Prescription | Pharmacy
 	</title>
 				<style>
 
@@ -52,19 +52,28 @@
 	<div id="wrapper">
 
 
-		<form action = "/savedetails" method="post">
-    <table>
-        <tr><td>PatientPPSN</td><td><input type="text" name="PatientPPSN"></td></tr>
-        <tr><td>PhysicianIMCN</td><td><input type="number" name="PhysicianIMCN"></td></tr>
-        <tr><td>PatientName</td><td><input type="text" name="PatientName"></td></tr>
-		<tr><td>PrescriptionContents</td><td><input type="text" name="PrescriptionContents"></td></tr>
-		<tr><td>PrecriptionFreq</td><td><input type="text" name="PrecriptionFreq"></td></tr>
-        <tr><td><input type="submit" value="Submit"></td></tr>
-    </table>
-    </form>
+		<p> Your Prescription is: </p>
+
+		<table border= 12>
+
+			<thead>
 
 
 
+			<tr><td>PrescriptionID</td><td>{{row["PrescriptionID"]}}</td></tr>
+			<tr><td>Patient PPSN</td><td>{{row["PatientPPSN"]}}</td></tr>
+            <tr><td>Physician IMCN</td><td>{{row["PhysicianIMCN"]}}</td></tr>
+			<tr><td>Patient Name</td><td>{{row["PatientNAME"]}}</td></tr>
+            <tr><td>Prescription Contents</td><td>{{row["PrescriptionContents"]}}</td></tr>
+			<tr><td>Prescription Frequency (in days)</td><td>{{row["PrescriptionFreqDays"]}}</td></tr>
+
+			</thead>
+
+
+
+
+
+		</table>
 
 
 	</div>

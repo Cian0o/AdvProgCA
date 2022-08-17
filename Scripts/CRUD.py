@@ -24,6 +24,28 @@ def index():
 def submit():
     return render_template("PhysicianPrescribe.html")
 
+@app.route('/savedetails', methods=["POST", "GET"])
+def savedetails():
+    msg = "msg"
+    if request.method == "POST":
+        try:
+            PatientPPSN = request.form["PatientPPSN"]
+            PhysicianIMCN = request.form["PhysicianIMCN"]
+            PatientName = request.form["PatientName"]
+            PrescriptionContents = request.form["PrescriptionContents"]
+            PrecriptionFreq = request.form["PrecriptionFreq"]
+            with sqlite3.connect("mypharma.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT into prescriptions (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq) values (?,?,?, ?, ?)", (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq))
+                con.commit()
+                msg = "Prescription successfully Added"
+        except:
+            con.rollback()
+            msg = "We can not add the prescription"
+        finally:
+            return render_template("index.html", msg=msg)
+            con.close()
+
 @app.route('/PhysicianAmmend.html')
 def ammend():
     return render_template("PhysicianAmmend.html")
@@ -44,9 +66,9 @@ def regchem():
 def getpresc():
     return render_template("GetPrescription.html")
 
-# @app.route('/')
-# def getpresc():
-#     return render_template('GetPrescription.html', prescriptions=prescriptions.query.all())
+@app.route('/GetPrescription')
+def GetPrescription():
+    return render_template('GetPrescription.html')
 
 @app.route('/GetPrescription2Ammend.html')
 def getpresc2():
@@ -55,6 +77,13 @@ def getpresc2():
 @app.route('/PrescriptionSubmitted.html')
 def submitted():
     return render_template("PrescriptionSubmitted.html")
+
+
+
+
+# @app.route('/GetPrescription')
+# def showpresc():
+#     return render_template("GetPrescription.html")
 
 # db = SQLAlchemy(app)
 #
@@ -88,10 +117,10 @@ def submitted():
 #             return redirect(url_for('list_employees'))
 #     return render_template('add.html')
 
-# @app.route('/PhysicianPrescribe.html', methods = ["POST", "GET"])
-# def prescribe():
+# @app.route('/PhysicianPrescribe', methods = ["POST", "GET"])
+# def PhysicianPrescribe():
 #     msg = "msg"
-#     db = sqlite3.connect('prescriptions.db')
+#     # con = sqlite3.connect('prescriptions.db')
 #     if request.method == "POST":
 #         try:
 #             PatientPPSN = request.form["PatientPPSN"]
@@ -99,30 +128,33 @@ def submitted():
 #             PatientName = request.form["PatientName"]
 #             PrescriptionContents = request.form["PrescriptionContents"]
 #             PrecriptionFreq = request.form["PrecriptionFreq"]
-#             with sqlite3.connect("Prescriptions.db") as con:
+#             with sqlite3.connect("prescriptions.db") as con:
 #                 cur = con.cursor()
 #                 cur.execute("INSERT  into prescriptions (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq) values (?, ?, ?, ?, ?)" , (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq))
 #                 con.commit
 #                 msg = "Prescription Submitted"
+#         except:
+#             con.rollback()
+#             msg = "We cannot add to list"
 #         finally:
 #             return render_template("GetPrescription.html", msg = msg)
 #             con.close()
 
-@app.route("/PhysicianPrescribe.html",methods=['GET','POST'])
-def add_user():
-    if request.method=='POST':
-        PatientPPSN=request.form['PatientPPSN']
-        PhysicianIMCN=request.form['PhysicianIMCN']
-        PatientName = request.form['PatientName']
-        PrescriptionContents = request.form['PrescriptionContents']
-        PrecriptionFreq = request.form['PrecriptionFreq']
-        con=sqlite3.connect("prescriptions.db")
-        cur=con.cursor()
-        cur.execute("insert into prescriptions(PatientPPSN,PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq) values (?,?,?,?,?)",(PatientPPSN,PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq))
-        con.commit()
-        flash('Prescription Submitted','success')
-        return redirect(url_for("GetPrescription.html"))
-    return render_template("GetPrescription.html")
+# @app.route("/PhysicianPrescribe.html",methods=['POST'])
+# def PhysicianPrescribe():
+#     # if request.method=='POST':
+#     PatientPPSN=request.form.get('PatientPPSN')
+#     PhysicianIMCN=request.form.get('PhysicianIMCN')
+#     PatientName = request.form.get('PatientName')
+#     PrescriptionContents = request.form.get('PrescriptionContents')
+#     PrecriptionFreq = request.form.get('PrecriptionFreq')
+#     con=sqlite3.connect("prescriptions.db")
+#     cur=con.cursor()
+#     cur.execute("insert into prescriptions(PatientPPSN,PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq) values (?,?,?,?,?)",(PatientPPSN,PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq))
+#     con.commit()
+#     flash('Prescription Submitted','success')
+#         # return redirect(url_for("GetPrescription.html"))
+#     return render_template("GetPrescription.html")
 
 
 
