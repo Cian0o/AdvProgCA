@@ -43,8 +43,17 @@ def savedetails():
             con.rollback()
             msg = "We can not add the prescription"
         finally:
-            return render_template("index.html", msg=msg)
+            return render_template("success.html", msg=msg)
             con.close()
+
+@app.route('/view')
+def view():
+    con = sqlite3.connect("mypharma.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select PatientPPSN from prescriptions")
+    rows = cur.fetchall()
+    return render_template("success.html", rows=rows)
 
 @app.route('/PhysicianAmmend.html')
 def ammend():
@@ -53,6 +62,19 @@ def ammend():
 @app.route('/PharmacyRetrieve.html')
 def retrieve():
     return render_template("PharmacyRetrieve.html")
+
+# @app.route('/retrieve', methods=["GET"])
+# def retrieve():
+#     PatientPPSN = request.form["PatientPPSN"]
+#     with sqlite3.connect("mypharma.db") as con:
+#         try:
+#             cur = con.cursor()
+#             cur.execute("SELECT from prescriptions where PatientPPSN = ?", PatientPPSN")
+#             msg = "record successfully deleted"
+#         except:
+#             msg = "can't be deleted"
+#         finally:
+#             return render_template("delete_record.html", msg=msg)
 
 @app.route('/PhysicianRegister.html')
 def regdoc():

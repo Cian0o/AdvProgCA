@@ -8,7 +8,7 @@
 
 
 	<title>
-		Get Prescription | Pharmacy
+		View Prescription | Pharmacy
 	</title>
 				<style>
 
@@ -52,20 +52,29 @@
 	<div id="wrapper">
 
 
-		<p> Your Prescription is: </p>
+		<h3>Prescription Information</h3>
+<table border=5>
+    <thead>
+        <td>Patient PPSN</td>
+        <td>Physician IMCN</td>
+        <td>Patient Name</td>
+        <td>Prescription Contents</td>
+	    <td>Prescription Frequency (Days)</td>
+    </thead>
 
-		<table border= 12>
+    {% for row in rows %}
 
-			<thead>
+        <tr>
+            <td>{{row["PatientPPSN"]}}</td>
+            <td>{{row["PhysicianIMCN"]}}</td>
+            <td>{{row["PatientName"]}}</td>
+            <td>{{row["PrescriptionContents"]}}</td>
+			<td>{{row["PrecriptionFreq"]}}</td>
+        </tr>
 
-
-
-			<tr><td>PrescriptionID</td><td>{{row["PrescriptionID"]}}</td></tr>
-			<tr><td>Patient PPSN</td><td>{{row["PatientPPSN"]}}</td></tr>
-            <tr><td>Physician IMCN</td><td>{{row["PhysicianIMCN"]}}</td></tr>
-			<tr><td>Patient Name</td><td>{{row["PatientNAME"]}}</td></tr>
-            <tr><td>Prescription Contents</td><td>{{row["PrescriptionContents"]}}</td></tr>
-			<tr><td>Prescription Frequency (in days)</td><td>{{row["PrescriptionFreqDays"]}}</td></tr>
+    {% endfor %}
+</table>
+<br><br>
 
 			</thead>
 

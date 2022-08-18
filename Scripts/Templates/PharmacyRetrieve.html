@@ -28,6 +28,10 @@
 			<li class="nav_bar_links">Submit Prescription</li>
 			</a>
 
+			<a href="PharmacyRetrieve.html">
+			<li class="nav_bar_links">Retrieve a Prescription</li>
+			</a>
+
 			<a href="PhysicianAmmend.html">
 			<li class="nav_bar_links">Ammend Prescription</li>
 			</a>
@@ -52,16 +56,13 @@
 	<div id="wrapper">
 
 
-		<form id="form" method="GET" action="GetPrescription.html">
+			<form action = "/view" method="GET">
+    <table>
+        <tr><td>PatientPPSN</td><td><input type="text" name="Enter Patient PPSN"></td></tr>
 
-
-					<input type="number" name="PatientPPSN" placeholder="Patient PPSN"><br>
-
-
-					<a href = "GetPrescription.html">
-					<input type="submit" value="Submit" >
-						</a>
-				</form>
+        <tr><td><input type="submit" value="Submit"></td></tr>
+    </table>
+    </form>
 
 
 
