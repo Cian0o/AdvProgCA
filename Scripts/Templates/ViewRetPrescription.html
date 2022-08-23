@@ -8,7 +8,7 @@
 
 
 	<title>
-		Prescribe | Physician / Surgery
+		Get Prescription | Pharmacy
 	</title>
 				<style>
 
@@ -26,10 +26,6 @@
 
 			<a href="PhysicianPrescribe.html">
 			<li class="nav_bar_links">Submit Prescription</li>
-			</a>
-
-			<a href="PharmacyRetrieve.html">
-			<li class="nav_bar_links">Retrieve a Prescription</li>
 			</a>
 
 			<a href="PhysicianAmmend.html">
@@ -56,19 +52,40 @@
 	<div id="wrapper">
 
 
-		<form action='/prescribe' method = "POST">
+		<p> Your Prescription is: </p>
 
-			  <p>Patient PPS Number <input type = "text" name = "PatientPPSN" /></p>
-			  <p>GP IMC Number <input type = "integer" name = "PhysicianIMCN" /></p>
-			  <p>Patient Name <input type = "text" name = "PatientName" /></p>
-			  <p>Prescription <input type = "text" name = "PrescriptionContents" /></p>
-			  <p>Prescription Frequencey (Days) <input type = "integer" name = "PrecriptionFreq" /></p>
+		<table border=5>
+    <thead>
+        <td>Patient PPS Number</td>
+        <td>GP IMC Number</td>
+        <td>Patient Name</td>
+        <td>Prescription Contents</td>
+		<td>Prescription Frequency (Days)</td>
+    </thead>
 
-			<p><input type = "submit" value = "Submit" /></p>
-</form>
+    {% for row in rows %}
+
+        <tr>
+            <td>{{row["PatientPPSN"]}}</td>
+            <td>{{row["PhysicianIMCN"]}}</td>
+            <td>{{row["PatientName"]}}</td>
+            <td>{{row["PrescriptionContents"]}}</td>
+			 <td>{{row["PrecriptionFreq"]}}</td>
+        </tr>
+
+    {% endfor %}
+</table>
 
 
 
+
+
+
+<!--		</table>-->
+
+
+
+		</table>
 
 
 	</div>
