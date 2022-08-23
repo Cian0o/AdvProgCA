@@ -7,62 +7,15 @@ import sqlite3
 
 app = Flask(__name__,template_folder='templates', static_folder= 'templates/static')
 
-
-
-
-
-
-
 @app.route('/')
 def index():
     return render_template("index.html")
-
-@app.route('/PhysicianRegister.html')
-def regdoc():
-    return render_template("PhysicianRegister.html")
-
-@app.route('/PharmacyRegister.html')
-def regchem():
-    return render_template("PharmacyRegister.html")
-
-@app.route('/GetPrescription.html')
-def getpresc():
-    return render_template("GetPrescription.html")
-
-@app.route('/GetPrescription')
-def GetPrescription():
-    return render_template('GetPrescription.html')
-
-@app.route('/GetPrescription2Ammend.html')
-def getpresc2():
-    return render_template("GetPrescription2Ammend.html")
-
-@app.route('/PrescriptionSubmitted.html')
-def submitted():
-    return render_template("PrescriptionSubmitted.html")
-
-@app.route('/success.html')
-def success():
-    return render_template("success.html")
 
 @app.route('/PhysicianPrescribe.html')
 def submit():
     return render_template("PhysicianPrescribe.html")
 
-
-
-@app.route('/PharmacyRetrieve.html')
-def PharmacyRetrieve():
-    return render_template("PharmacyRetrieve.html")
-
-
-
-
-
-
-
-
-@app.route('/savedetails', methods=["POST", "GET"])
+@app.route('/prescribe', methods=["POST", "GET"])
 def savedetails():
     msg = "msg"
     if request.method == "POST":
@@ -72,7 +25,7 @@ def savedetails():
             PatientName = request.form["PatientName"]
             PrescriptionContents = request.form["PrescriptionContents"]
             PrecriptionFreq = request.form["PrecriptionFreq"]
-            with sqlite3.connect("mypharma.db") as con:
+            with sqlite3.connect("mypharmaSQLite3.db") as con:
                 cur = con.cursor()
                 cur.execute("INSERT into prescriptions (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq) values (?,?,?, ?, ?)", (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq))
                 con.commit()
@@ -81,8 +34,60 @@ def savedetails():
             con.rollback()
             msg = "We can not add the prescription"
         finally:
-            return render_template("success.html", msg=msg)
+            return render_template("successPresc.html", msg=msg)
             con.close()
+
+
+@app.route('/successPresc.html')
+def success():
+    return render_template("successPresc.html")
+
+@app.route('/ViewPrescription.html')
+def ViewPrescription():
+    return render_template("ViewPrescription.html")
+
+@app.route('/PharmacyRetrieve.html')
+def PharmacyRetrieve():
+    return render_template("PharmacyRetrieve.html")
+
+@app.route('/ViewRetPrescription')
+def ViewRetPrescription():
+    con = sqlite3.connect("mypharmaSQLite3.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from prescriptions")
+    rows = cur.fetchall()
+    return render_template("ViewRetPrescription.html", rows=rows)
+
+@app.route('/PhysicianRegister.html')
+def regdoc():
+    return render_template("PhysicianRegister.html")
+
+@app.route('/PharmacyRegister.html')
+def regchem():
+    return render_template("PharmacyRegister.html")
+
+
+@app.route('/GetPrescription2Ammend.html')
+def getpresc2():
+    return render_template("GetPrescription2Ammend.html")
+
+@app.route('/PrescriptionSubmitted.html')
+def submitted():
+    return render_template("PrescriptionSubmitted.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -96,14 +101,7 @@ def retrieve():
 
 #Banked Retrieve:
 
-@app.route('/view')
-def view():
-    con = sqlite3.connect("mypharma.db")
-    con.row_factory = sqlite3.Row
-    cur = con.cursor()
-    cur.execute("select * from prescriptions")
-    rows = cur.fetchall()
-    return render_template("success.html", rows=rows)
+
 
 
 
@@ -115,7 +113,7 @@ def view():
 #     cur = con.cursor()
 #     cur.execute("select * from prescriptions where PatientPPSN = ?", PatientPPSN)
 #     rows = cur.fetchall()
-#     return render_template("success.html", rows=rows)
+#     return render_template("successPresc.html", rows=rows)
 
 # @app.route('/view', methods=["GET"])
 # def deleterecord():
@@ -142,7 +140,7 @@ def view():
 
 # @app.route('/GetPrescription')
 # def showpresc():
-#     return render_template("GetPrescription.html")
+#     return render_template("ViewPrescription.html")
 
 # db = SQLAlchemy(app)
 #
@@ -196,7 +194,7 @@ def view():
 #             con.rollback()
 #             msg = "We cannot add to list"
 #         finally:
-#             return render_template("GetPrescription.html", msg = msg)
+#             return render_template("ViewPrescription.html", msg = msg)
 #             con.close()
 
 # @app.route("/PhysicianPrescribe.html",methods=['POST'])
@@ -212,8 +210,8 @@ def view():
 #     cur.execute("insert into prescriptions(PatientPPSN,PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq) values (?,?,?,?,?)",(PatientPPSN,PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq))
 #     con.commit()
 #     flash('Prescription Submitted','success')
-#         # return redirect(url_for("GetPrescription.html"))
-#     return render_template("GetPrescription.html")
+#         # return redirect(url_for("ViewPrescription.html"))
+#     return render_template("ViewPrescription.html")
 
 
 
@@ -237,7 +235,7 @@ def view():
 #             con.rollback()
 #             msg = "Prescription Could Not be Added!"
 #         finally:
-#             return render_template("GetPrescription.html", msg=msg)
+#             return render_template("ViewPrescription.html", msg=msg)
 #             con.close()
 
 
@@ -245,14 +243,14 @@ def view():
 
 
 
-# @app.route('/GetPrescription.html')
+# @app.route('/ViewPrescription.html')
 # def fetch():
 #     con = sqlite3.connect("venv/Prescriptions.db")
 #     con.row_factory = sqlite3.Row
 #     cur = con.cursor()
 #     cur.execute("select * from Prescriptions")
 #     rows = cur.fetchall()
-#     return render_template("GetPrescription.html", rows=rows)
+#     return render_template("ViewPrescription.html", rows=rows)
 
 
 if __name__ == "__main__":

@@ -27,9 +27,9 @@ def regdoc():
 def regchem():
     return render_template("PharmacyRegister.html")
 
-@app.route('/GetPrescription.html')
+@app.route('/ViewPrescription.html')
 def getpresc():
-    return render_template("GetPrescription.html")
+    return render_template("ViewPrescription.html")
 
 @app.route('/GetPrescription2Ammend.html')
 def getpresc2():
@@ -57,7 +57,7 @@ def prescribe():
             con.rollback()
             msg = "Prescription Could Not be Added!"
         finally:
-            return render_template("GetPrescription.html", msg=msg)
+            return render_template("ViewPrescription.html", msg=msg)
             con.close()
 
 

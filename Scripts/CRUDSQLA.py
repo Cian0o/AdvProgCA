@@ -74,13 +74,13 @@ def regdoc():
 def regchem():
     return render_template("PharmacyRegister.html")
 
-@app.route('/GetPrescription.html')
+@app.route('/ViewPrescription.html')
 def getpresc():
-    return render_template("GetPrescription.html")
+    return render_template("ViewPrescription.html")
 
 @app.route('/GetPrescription')
 def GetPrescription():
-    return render_template('GetPrescription.html')
+    return render_template('ViewPrescription.html')
 
 @app.route('/GetPrescription2Ammend.html')
 def getpresc2():
@@ -90,9 +90,9 @@ def getpresc2():
 def submitted():
     return render_template("PrescriptionSubmitted.html")
 
-@app.route('/success.html')
+@app.route('/successPresc.html')
 def success():
-    return render_template("success.html")
+    return render_template("successPresc.html")
 
 @app.route('/PhysicianPrescribe.html')
 def submit():
@@ -112,7 +112,7 @@ def create():
         prescription = mypharma(patientppsn=patientppsn, physicianimcn=physicianimcn, patientname=patientname, prescriptioncont=prescriptioncont,prescfreq=prescfreq)
         db.session.add(prescription)
         db.session.commit()
-        return redirect('/success.html')
+        return redirect('/successPresc.html')
 
 @app.route('/PharmacyRetrieve.html')
 def PharmacyRetrieve():
@@ -151,7 +151,7 @@ app.run(host='localhost', port=5000)
 #             con.rollback()
 #             msg = "We can not add the prescription"
 #         finally:
-#             return render_template("success.html", msg=msg)
+#             return render_template("successPresc.html", msg=msg)
 #             con.close()
 
 
@@ -172,7 +172,7 @@ def retrieve():
 #     cur = con.cursor()
 #     cur.execute("select * from prescriptions")
 #     rows = cur.fetchall()
-#     return render_template("success.html", rows=rows)
+#     return render_template("successPresc.html", rows=rows)
 
 
 
@@ -184,7 +184,7 @@ def retrieve():
 #     cur = con.cursor()
 #     cur.execute("select * from prescriptions where PatientPPSN = ?", PatientPPSN)
 #     rows = cur.fetchall()
-#     return render_template("success.html", rows=rows)
+#     return render_template("successPresc.html", rows=rows)
 
 # @app.route('/view', methods=["GET"])
 # def deleterecord():
@@ -211,7 +211,7 @@ def retrieve():
 
 # @app.route('/GetPrescription')
 # def showpresc():
-#     return render_template("GetPrescription.html")
+#     return render_template("ViewPrescription.html")
 
 # db = SQLAlchemy(app)
 #
@@ -265,7 +265,7 @@ def retrieve():
 #             con.rollback()
 #             msg = "We cannot add to list"
 #         finally:
-#             return render_template("GetPrescription.html", msg = msg)
+#             return render_template("ViewPrescription.html", msg = msg)
 #             con.close()
 
 # @app.route("/PhysicianPrescribe.html",methods=['POST'])
@@ -281,8 +281,8 @@ def retrieve():
 #     cur.execute("insert into prescriptions(PatientPPSN,PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq) values (?,?,?,?,?)",(PatientPPSN,PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq))
 #     con.commit()
 #     flash('Prescription Submitted','success')
-#         # return redirect(url_for("GetPrescription.html"))
-#     return render_template("GetPrescription.html")
+#         # return redirect(url_for("ViewPrescription.html"))
+#     return render_template("ViewPrescription.html")
 
 
 
@@ -306,7 +306,7 @@ def retrieve():
 #             con.rollback()
 #             msg = "Prescription Could Not be Added!"
 #         finally:
-#             return render_template("GetPrescription.html", msg=msg)
+#             return render_template("ViewPrescription.html", msg=msg)
 #             con.close()
 
 
@@ -314,14 +314,14 @@ def retrieve():
 
 
 
-# @app.route('/GetPrescription.html')
+# @app.route('/ViewPrescription.html')
 # def fetch():
 #     con = sqlite3.connect("venv/Prescriptions.db")
 #     con.row_factory = sqlite3.Row
 #     cur = con.cursor()
 #     cur.execute("select * from Prescriptions")
 #     rows = cur.fetchall()
-#     return render_template("GetPrescription.html", rows=rows)
+#     return render_template("ViewPrescription.html", rows=rows)
 
 
 if __name__ == "__main__":

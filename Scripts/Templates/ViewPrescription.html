@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='main.css') }}">
+
+
+	<title>
+		Get Prescription | Pharmacy
+	</title>
+				<style>
+
+
+
+</style>
+
+</head>
+<body>
+
+
+
+		<header>
+		<ul id="nav_bar">
+
+			<a href="PhysicianPrescribe.html">
+			<li class="nav_bar_links">Submit Prescription</li>
+			</a>
+
+			<a href="PhysicianAmmend.html">
+			<li class="nav_bar_links">Ammend Prescription</li>
+			</a>
+
+			<a href="PharmacyRetrieve.html">
+			<li class="nav_bar_links">Retrieve a Prescription</li>
+			</a>
+
+			<a href="PhysicianRegister.html">
+			<li class="nav_bar_links">Register Surgery</li>
+			</a>
+
+			<a href="PharmacyRegister.html">
+			<li class="nav_bar_links_active">Register Pharmacy</li>
+			</a>
+
+				<a href="http://localhost:5000 "><img id="logo" src="static/Logo.jpeg" alt="MyPharma"></a>
+
+		</ul>
+	</header>
+
+	<div id="wrapper">
+
+
+		<p> Your Prescription is: </p>
+
+		<table border= 12>
+
+			<thead>
+
+
+
+			<tr><td>PrescriptionID</td><td>{{row["PrescriptionID"]}}</td></tr>
+			<tr><td>Patient PPSN</td><td>{{row["PatientPPSN"]}}</td></tr>
+            <tr><td>Physician IMCN</td><td>{{row["PhysicianIMCN"]}}</td></tr>
+			<tr><td>Patient Name</td><td>{{row["PatientNAME"]}}</td></tr>
+            <tr><td>Prescription Contents</td><td>{{row["PrescriptionContents"]}}</td></tr>
+			<tr><td>Prescription Frequency (in days)</td><td>{{row["PrescriptionFreq"]}}</td></tr>
+
+			</thead>
+
+		</table>
+
+	<table>
+
+
+<h3>Patient PPS Number</h3>
+<p>{{prescription.patientppsn}}</p><hr>
+<h3>GP IMC Number</h3>
+<p>{{prescription.physicianimcn}}</p><hr>
+<h3>Patient Name</h3>
+<p>{{prescription.patientname}}</p><hr>
+<h3>Prescription Contents</h3>
+<p>{{prescription.prescriptioncont}}</p><hr>
+<h3>Prescription Frequencey (Days)</h3>
+<p>{{prescription.prescfreq}}</p><hr>
+
+
+
+
+		</table>
+
+
+
+		</table>
+
+
+	</div>
+
+
+	<footer>
+			&copy; 2022
+		</footer>
+
+
+</body>
+</html>
