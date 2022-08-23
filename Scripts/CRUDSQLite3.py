@@ -63,9 +63,54 @@ def ViewRetPrescription():
 def regdoc():
     return render_template("PhysicianRegister.html")
 
+
+@app.route('/GPReg', methods=["POST", "GET"])
+def GPReg():
+    msg = "msg"
+    if request.method == "POST":
+        try:
+            PhysicianIMCN = request.form["PhysicianIMCN"]
+            SurgeryName = request.form["SurgeryName"]
+            SurgeryPhone = request.form["SurgeryPhone"]
+            SurgeryAddress = request.form["SurgeryAddress"]
+            SurgeryEmail = request.form["SurgeryEmail"]
+            with sqlite3.connect("mypharmaSQLite3.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT into physicians (PhysicianIMCN, SurgeryName, SurgeryPhone, SurgeryAddress, SurgeryEmail) values (?,?,?, ?, ?)", (PhysicianIMCN, SurgeryName, SurgeryPhone, SurgeryAddress, SurgeryEmail))
+                con.commit()
+                msg = "Surgery/Physician successfully Added"
+        except:
+            con.rollback()
+            msg = "We can not add the Surgery/Physician"
+        finally:
+            return render_template("successRegGP.html", msg=msg)
+            con.close()
+
 @app.route('/PharmacyRegister.html')
 def regchem():
     return render_template("PharmacyRegister.html")
+
+@app.route('/PharmaReg', methods=["POST", "GET"])
+def PharmaReg():
+    msg = "msg"
+    if request.method == "POST":
+        try:
+            PSIReg = request.form["PSIReg"]
+            PharmaName = request.form["PharmaName"]
+            PharmaPhone = request.form["PharmaPhone"]
+            PharmaAddress = request.form["PharmaAddress"]
+            PharmaEmail = request.form["PharmaEmail"]
+            with sqlite3.connect("mypharmaSQLite3.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT into pharmacies (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail) values (?,?,?, ?, ?)", (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail))
+                con.commit()
+                msg = "Pharmacy successfully registered"
+        except:
+            con.rollback()
+            msg = "We can not register the Pharmacy"
+        finally:
+            return render_template("successRegPharm.html", msg=msg)
+            con.close()
 
 
 @app.route('/GetPrescription2Ammend.html')
