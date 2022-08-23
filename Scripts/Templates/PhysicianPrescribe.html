@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,12 +56,12 @@
 	<div id="wrapper">
 
 
-		<form action='/prescribe' method = "POST">
+		<form action='/prescribe' method = "POST" id="form">
 
 			  <p>Patient PPS Number <input type = "text" name = "PatientPPSN" /></p>
 			  <p>GP IMC Number <input type = "integer" name = "PhysicianIMCN" /></p>
 			  <p>Patient Name <input type = "text" name = "PatientName" /></p>
-			  <p>Prescription <input type = "text" name = "PrescriptionContents" /></p>
+			  <p>Prescription <textarea type = "text" name = "PrescriptionContents"></textarea></p>
 			  <p>Prescription Frequencey (Days) <input type = "integer" name = "PrecriptionFreq" /></p>
 
 			<p><input type = "submit" value = "Submit" /></p>

@@ -8,7 +8,7 @@
 
 
 	<title>
-		Register | Pharmacy
+		Register Pharmacy | MyPharma
 	</title>
 				<style>
 
@@ -58,18 +58,18 @@
 	<div id="wrapper">
 
 
-		<form id="form" method="get" action="../index.html">
+		<form id="form" method="POST" action='/PharmaReg'>
 
 
-					<input type="number" name="fullname" placeholder="PSI Number"><br>
+					<input type="number" name="PSIReg" placeholder="Pharmacy Society of Ireland Number"><br>
 
-                    <input type="text" name="email" placeholder="Pharmacy Name"><br>
+                    <input type="text" name="PharmaName" placeholder="Pharmacy Name"><br>
 
-                    <input type="email" name="email" placeholder="Pharmacy Email"><br>
+                    <input type="number" name="PharmaPhone" placeholder="Pharmacy Phone"><br>
 
-					<input type="number" name="phone" placeholder="Pharmacy Phone"><br>
+			<textarea type="text" name="PharmaAddress" placeholder="Pharmacy Address"></textarea><br>
 
-                    <textarea type="text" name="address" placeholder="Physician/Surgery Address"></textarea><br>
+                    <input type="email" name="PharmaEmail" placeholder="Pharmacy Email"><br>
 
 					<input type="submit" value="Submit">
 				</form>

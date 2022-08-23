@@ -56,18 +56,18 @@
 	<div id="wrapper">
 
 
-		<form id="form" method="get" action="../index.html">
+		<form id="form" method="POST" action='/GPReg'>
 
 
-					<input type="number" name="fullname" placeholder="Irish Medical Council Number"><br>
+					<input type="number" name="PhysicianIMCN" placeholder="GP's Irish Medical Council Number"><br>
 
-                    <input type="text" name="email" placeholder="Physician/Surgery Name"><br>
+                    <input type="text" name="SurgeryName" placeholder="Physician/Surgery Name"><br>
 
-                    <input type="email" name="email" placeholder="Physician/Surgery Email"><br>
+                    <input type="number" name="SurgeryPhone" placeholder="Physician/Surgery Phone"><br>
 
-					<input type="number" name="phone" placeholder="Physician/Surgery Phone"><br>
+			<textarea type="text" name="SurgeryAddress" placeholder="Physician/Surgery Address"></textarea><br>
 
-                    <textarea type="text" name="address" placeholder="Physician/Surgery Address"></textarea><br>
+                    <input type="email" name="SurgeryEmail" placeholder="Physician/Surgery Email"></input><br>
 
 					<input type="submit" value="Submit">
 				</form>
