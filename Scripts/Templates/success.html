@@ -28,6 +28,10 @@
 			<li class="nav_bar_links">Submit Prescription</li>
 			</a>
 
+			<a href="PharmacyRetrieve.html">
+			<li class="nav_bar_links">Retrieve a Prescription</li>
+			</a>
+
 			<a href="PhysicianAmmend.html">
 			<li class="nav_bar_links">Ammend Prescription</li>
 			</a>
@@ -52,32 +56,23 @@
 	<div id="wrapper">
 
 
-		<h3>Prescription Information</h3>
-<table border=5>
-    <thead>
-        <td>Patient PPSN</td>
-        <td>Physician IMCN</td>
-        <td>Patient Name</td>
-        <td>Prescription Contents</td>
-	    <td>Prescription Frequency (Days)</td>
-    </thead>
-
-    {% for row in rows %}
-
-        <tr>
-            <td>{{row["PatientPPSN"]}}</td>
-            <td>{{row["PhysicianIMCN"]}}</td>
-            <td>{{row["PatientName"]}}</td>
-            <td>{{row["PrescriptionContents"]}}</td>
-			<td>{{row["PrecriptionFreq"]}}</td>
-        </tr>
-
-    {% endfor %}
-</table>
+		<h3>Prescription Submitted</h3>
+Prescription Submitted!
 <br><br>
 
-			</thead>
+		<table>
 
+
+<h3>Patient PPS Number</h3>
+<p>{{prescription.patientppsn}}</p><hr>
+<h3>GP IMC Number</h3>
+<p>{{prescription.physicianimcn}}</p><hr>
+<h3>Patient Name</h3>
+<p>{{prescription.patientname}}</p><hr>
+<h3>Prescription Contents</h3>
+<p>{{prescription.prescriptioncont}}</p><hr>
+<h3>Prescription Frequencey (Days)</h3>
+<p>{{prescription.prescfreq}}</p><hr>
 
 
 

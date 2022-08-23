@@ -1,80 +1,21 @@
 from flask import *
-from flask_sqlalchemy import SQLAlchemy
-from typing import Callable
 import sqlite3
 
 
-# class MySQLAlchemy(SQLAlchemy):  # Or you can add the below code on the SQLAlchemy directly if you think to modify the package code is acceptable.
-#     Column: Callable  # Use the typing to tell the IDE what the type is.
-#     String: Callable
-#     Integer: Callable
 
-# app = Flask(__name__, template_folder='/Users/cianwalker/Desktop/AdvProgCA/Scripts/Templates', static_folder='/Users/cianwalker/Desktop/AdvProgCA/Scripts/Static')
+
 
 app = Flask(__name__,template_folder='templates', static_folder= 'templates/static')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///prescriptions.sqlite3'
-# app.config['SECRET_KEY'] = "secret key"
+
+
+
+
+
 
 
 @app.route('/')
 def index():
     return render_template("index.html")
-
-@app.route('/PhysicianPrescribe.html')
-def submit():
-    return render_template("PhysicianPrescribe.html")
-
-@app.route('/savedetails', methods=["POST", "GET"])
-def savedetails():
-    msg = "msg"
-    if request.method == "POST":
-        try:
-            PatientPPSN = request.form["PatientPPSN"]
-            PhysicianIMCN = request.form["PhysicianIMCN"]
-            PatientName = request.form["PatientName"]
-            PrescriptionContents = request.form["PrescriptionContents"]
-            PrecriptionFreq = request.form["PrecriptionFreq"]
-            with sqlite3.connect("mypharma.db") as con:
-                cur = con.cursor()
-                cur.execute("INSERT into prescriptions (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq) values (?,?,?, ?, ?)", (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq))
-                con.commit()
-                msg = "Prescription successfully Added"
-        except:
-            con.rollback()
-            msg = "We can not add the prescription"
-        finally:
-            return render_template("success.html", msg=msg)
-            con.close()
-
-@app.route('/view')
-def view():
-    con = sqlite3.connect("mypharma.db")
-    con.row_factory = sqlite3.Row
-    cur = con.cursor()
-    cur.execute("select PatientPPSN from prescriptions")
-    rows = cur.fetchall()
-    return render_template("success.html", rows=rows)
-
-@app.route('/PhysicianAmmend.html')
-def ammend():
-    return render_template("PhysicianAmmend.html")
-
-@app.route('/PharmacyRetrieve.html')
-def retrieve():
-    return render_template("PharmacyRetrieve.html")
-
-# @app.route('/retrieve', methods=["GET"])
-# def retrieve():
-#     PatientPPSN = request.form["PatientPPSN"]
-#     with sqlite3.connect("mypharma.db") as con:
-#         try:
-#             cur = con.cursor()
-#             cur.execute("SELECT from prescriptions where PatientPPSN = ?", PatientPPSN")
-#             msg = "record successfully deleted"
-#         except:
-#             msg = "can't be deleted"
-#         finally:
-#             return render_template("delete_record.html", msg=msg)
 
 @app.route('/PhysicianRegister.html')
 def regdoc():
@@ -99,6 +40,102 @@ def getpresc2():
 @app.route('/PrescriptionSubmitted.html')
 def submitted():
     return render_template("PrescriptionSubmitted.html")
+
+@app.route('/success.html')
+def success():
+    return render_template("success.html")
+
+@app.route('/PhysicianPrescribe.html')
+def submit():
+    return render_template("PhysicianPrescribe.html")
+
+
+
+@app.route('/PharmacyRetrieve.html')
+def PharmacyRetrieve():
+    return render_template("PharmacyRetrieve.html")
+
+
+
+
+
+
+
+
+@app.route('/savedetails', methods=["POST", "GET"])
+def savedetails():
+    msg = "msg"
+    if request.method == "POST":
+        try:
+            PatientPPSN = request.form["PatientPPSN"]
+            PhysicianIMCN = request.form["PhysicianIMCN"]
+            PatientName = request.form["PatientName"]
+            PrescriptionContents = request.form["PrescriptionContents"]
+            PrecriptionFreq = request.form["PrecriptionFreq"]
+            with sqlite3.connect("mypharma.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT into prescriptions (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq) values (?,?,?, ?, ?)", (PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq))
+                con.commit()
+                msg = "Prescription successfully Added"
+        except:
+            con.rollback()
+            msg = "We can not add the prescription"
+        finally:
+            return render_template("success.html", msg=msg)
+            con.close()
+
+
+
+@app.route('/PhysicianAmmend.html')
+def ammend():
+    return render_template("PhysicianAmmend.html")
+
+@app.route('/PharmacyRetrieve.html')
+def retrieve():
+    return render_template("PharmacyRetrieve.html")
+
+#Banked Retrieve:
+
+@app.route('/view')
+def view():
+    con = sqlite3.connect("mypharma.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from prescriptions")
+    rows = cur.fetchall()
+    return render_template("success.html", rows=rows)
+
+
+
+# @app.route('/view')
+# def view():
+#     PatientPPSN = request.form["PatientPPSN"]
+#     con = sqlite3.connect("mypharma.db")
+#     con.row_factory = sqlite3.Row
+#     cur = con.cursor()
+#     cur.execute("select * from prescriptions where PatientPPSN = ?", PatientPPSN)
+#     rows = cur.fetchall()
+#     return render_template("success.html", rows=rows)
+
+# @app.route('/view', methods=["GET"])
+# def deleterecord():
+#     id = request.form["id"]
+#     with sqlite3.connect("employee.db") as con:
+#         try:
+#             cur = con.cursor()
+#             cur.execute("delete from Employees where id = ?", id)
+#             msg = "record successfully deleted"
+#         except:
+#             msg = "can't be deleted"
+#         finally:
+#             return render_template("delete record.html", msg=msg)
+
+
+
+
+
+
+
 
 
 

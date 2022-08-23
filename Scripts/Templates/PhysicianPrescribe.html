@@ -56,16 +56,16 @@
 	<div id="wrapper">
 
 
-		<form action = "/savedetails" method="post">
-    <table>
-        <tr><td>PatientPPSN</td><td><input type="text" name="PatientPPSN"></td></tr>
-        <tr><td>PhysicianIMCN</td><td><input type="number" name="PhysicianIMCN"></td></tr>
-        <tr><td>PatientName</td><td><input type="text" name="PatientName"></td></tr>
-		<tr><td>PrescriptionContents</td><td><input type="textarea" name="PrescriptionContents"></td></tr>
-		<tr><td>PrecriptionFreq</td><td><input type="text" name="PrecriptionFreq"></td></tr>
-        <tr><td><input type="submit" value="Submit"></td></tr>
-    </table>
-    </form>
+		<form action='/prescribe' method = "POST">
+
+			  <p>Patient PPS Number <input type = "text" name = "patientppsn" /></p>
+			  <p>GP IMC Number <input type = "integer" name = "physicianimcn" /></p>
+			  <p>Patient Name <input type = "text" name = "patientname" /></p>
+			  <p>Prescription <input type = "text" name = "prescriptioncont" /></p>
+			  <p>Prescription Frequencey (Days) <input type = "integer" name = "prescfreq" /></p>
+
+			<p><input type = "submit" value = "Submit" /></p>
+</form>
 
 
 
