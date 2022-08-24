@@ -52,12 +52,23 @@ def PharmacyRetrieve():
 
 @app.route('/ViewRetPrescription')
 def ViewRetPrescription():
+    PatientPPSN = request.args["PatientPPSN"]
     con = sqlite3.connect("mypharmaSQLite3.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
-    cur.execute("select * from prescriptions")
+    cur.execute('select * from prescriptions where PatientPPSN = ?', [PatientPPSN])
     rows = cur.fetchall()
     return render_template("ViewRetPrescription.html", rows=rows)
+
+
+# @app.route('/ViewRetPrescription')
+# def ViewRetPrescription():
+#     con = sqlite3.connect("mypharmaSQLite3.db")
+#     con.row_factory = sqlite3.Row
+#     cur = con.cursor()
+#     cur.execute("select * from prescriptions")
+#     rows = cur.fetchall()
+#     return render_template("ViewRetPrescription.html", rows=rows)
 
 @app.route('/PhysicianRegister.html')
 def regdoc():
