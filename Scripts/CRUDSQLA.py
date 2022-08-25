@@ -156,9 +156,9 @@ app.run(host='localhost', port=5000)
 
 
 
-@app.route('/PhysicianAmmend.html')
+@app.route('/PhysicianAmmendReq.html')
 def ammend():
-    return render_template("PhysicianAmmend.html")
+    return render_template("PhysicianAmmendReq.html")
 
 @app.route('/PharmacyRetrieve.html')
 def retrieve():

@@ -15,6 +15,9 @@ def index():
 def submit():
     return render_template("PhysicianPrescribe.html")
 
+
+
+
 @app.route('/prescribe', methods=["POST", "GET"])
 def savedetails():
     msg = "msg"
@@ -61,14 +64,7 @@ def ViewRetPrescription():
     return render_template("ViewRetPrescription.html", rows=rows)
 
 
-# @app.route('/ViewRetPrescription')
-# def ViewRetPrescription():
-#     con = sqlite3.connect("mypharmaSQLite3.db")
-#     con.row_factory = sqlite3.Row
-#     cur = con.cursor()
-#     cur.execute("select * from prescriptions")
-#     rows = cur.fetchall()
-#     return render_template("ViewRetPrescription.html", rows=rows)
+
 
 @app.route('/PhysicianRegister.html')
 def regdoc():
@@ -147,9 +143,11 @@ def submitted():
 
 
 
-@app.route('/PhysicianAmmend.html')
+@app.route('/PhysicianAmmendReq.html')
 def ammend():
-    return render_template("PhysicianAmmend.html")
+    return render_template("PhysicianAmmendReq.html")
+
+
 
 @app.route('/PharmacyRetrieve.html')
 def retrieve():
