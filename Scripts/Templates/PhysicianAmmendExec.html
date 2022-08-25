@@ -8,7 +8,7 @@
 
 
 	<title>
-		Get Prescription | Pharmacy
+		Amend Prescription | MyPharma
 	</title>
 				<style>
 
@@ -28,8 +28,12 @@
 			<li class="nav_bar_links">Submit Prescription</li>
 			</a>
 
-			<a href="PhysicianAmmendReq.html">
-			<li class="nav_bar_links">Amend Prescription</li>
+			<a href="PharmacyRetrieve.html">
+			<li class="nav_bar_links">Retrieve a Prescription</li>
+			</a>
+
+			<a href="PhysicianAmmend.html">
+			<li class="nav_bar_links">Ammend Prescription</li>
 			</a>
 
 			<a href="PharmacyRetrieve.html">
@@ -49,12 +53,9 @@
 		</ul>
 	</header>
 
-	<div id="wrapper">
+			<p> Your Selected Prescription is: </p>
 
-
-		<p> Your Prescription is: </p>
-
-		<table border=5 id="form">
+		<table border=5>
     <thead>
         <td>Patient PPS Number</td>
         <td>GP IMC Number</td>
@@ -76,16 +77,19 @@
     {% endfor %}
 </table>
 
+					<p> Please enter your amendments: </p>
 
 
+		<form action='/prescribe' method = "POST">
 
+			  <p>Patient PPS Number <input type = "text" name = "PatientPPSN" /></p>
+			  <p>GP IMC Number <input type = "integer" name = "PhysicianIMCN" /></p>
+			  <p>Patient Name <input type = "text" name = "PatientName" /></p>
+			  <p>Prescription <textarea type = "text" name = "PrescriptionContents"></textarea></p>
+			  <p>Prescription Frequencey (Days) <input type = "integer" name = "PrecriptionFreq" /></p>
 
-
-<!--		</table>-->
-
-
-
-		</table>
+			<p><input type = "submit" value = "Submit" /></p>
+</form>
 
 
 	</div>
