@@ -112,9 +112,6 @@ def PharmaReg():
                 cur.execute("INSERT into pharmacies (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail) values (?,?,?, ?, ?)", (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail))
                 con.commit()
                 msg = "Pharmacy successfully registered"
-        except:
-            con.rollback()
-            msg = "We can not register the Pharmacy"
         finally:
             return render_template("successRegPharm.html", msg=msg)
             con.close()
@@ -129,24 +126,34 @@ def submitted():
     return render_template("PrescriptionSubmitted.html")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route('/PhysicianAmmendReq.html')
 def ammend():
     return render_template("PhysicianAmmendReq.html")
 
+@app.route('/ret2amend')
+def ret2amend():
+        PatientPPSN = request.args["PatientPPSN"]
+        con = sqlite3.connect("mypharmaSQLite3.db")
+        con.row_factory = sqlite3.Row
+        cur = con.cursor()
+        cur.execute('select * from prescriptions where PatientPPSN = ?', [PatientPPSN])
+        rows = cur.fetchall()
+        return render_template("PhysicianAmmendExec.html", rows=rows)
+
+@app.route('/ammendExec', methods = ["POST", "GET"])
+def ammendExec():
+    if request.method == 'POST':
+        PatientPPSN = request.form['PatientPPSN']
+        PhysicianIMCN = request.form['PhysicianIMCN']
+        PatientName = request.form['PatientName']
+        PrescriptionContents = request.form['PrescriptionContents']
+        PrecriptionFreq = request.form['PrecriptionFreq']
+        with sqlite3.connect("mypharmaSQLite3.db") as con:
+            cur = con.cursor()
+            cur.execute('update prescriptions set PatientPPSN = ?, PhysicianIMCN =? , PatientName = ? , PrescriptionContents = ?,PrecriptionFreq = ?',  [PatientPPSN, PhysicianIMCN, PatientName, PrescriptionContents, PrecriptionFreq])
+            con.commit()
+        return render_template("successPrescUpdated.html")
+        con.close()
 
 
 @app.route('/PharmacyRetrieve.html')
