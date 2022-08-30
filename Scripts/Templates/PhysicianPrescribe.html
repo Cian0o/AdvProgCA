@@ -8,7 +8,7 @@
 
 
 	<title>
-		Prescribe | Physician / Surgery
+		Prescribe | MyPharma.ie
 	</title>
 				<style>
 
@@ -36,9 +36,6 @@
 			<li class="nav_bar_links">Amend Prescription</li>
 			</a>
 
-			<a href="PharmacyRetrieve.html">
-			<li class="nav_bar_links">Retrieve a Prescription</li>
-			</a>
 
 			<a href="PhysicianRegister.html">
 			<li class="nav_bar_links">Register Surgery</li>
@@ -48,21 +45,26 @@
 			<li class="nav_bar_links_active">Register Pharmacy</li>
 			</a>
 
-				<a href="http://localhost:5000 "><img id="logo" src="static/Logo.jpeg" alt="MyPharma"></a>
+				<a href="http://localhost:5000 "><img id="logo" src="static/MyPharmaLogo.jpeg" alt="MyPharma"></a>
 
 		</ul>
 	</header>
 
 	<div id="wrapper">
+									<a href="http://localhost:5000"<p id="logo_title"> MyPharma.ie </p></a>
 
 
 		<form action='/prescribe' method = "POST" id="form">
-
-			  <p>Patient PPS Number <input type = "text" name = "PatientPPSN" /></p>
-			  <p>GP IMC Number <input type = "integer" name = "PhysicianIMCN" /></p>
-			  <p>Patient Name <input type = "text" name = "PatientName" /></p>
-			  <p>Prescription <textarea type = "text" name = "PrescriptionContents"></textarea></p>
-			  <p>Prescription Frequencey (Days) <input type = "integer" name = "PrecriptionFreq" /></p>
+				<p>Patient PPS Number</p>
+			    <input type = "text" name = "PatientPPSN" />
+				<p>GP IMC Number</p>
+			    <input type = "integer" name = "PhysicianIMCN" />
+				<p>Patient Name</p>
+			   <input type = "text" name = "PatientName" />
+				 <p>Prescription Contents</p>
+			  <textarea type = "text" name = "PrescriptionContents"></textarea>
+				<p>Prescription Frequency (Days) </p>
+			<input type = "integer" name = "PrecriptionFreq" />
 
 			<p><input type = "submit" value = "Submit" /></p>
 </form>

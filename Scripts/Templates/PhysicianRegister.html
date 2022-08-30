@@ -8,7 +8,7 @@
 
 
 	<title>
-		Register | Physician / Surgery
+		Register GP/Surgery | MyPharma.ie
 	</title>
 				<style>
 
@@ -36,10 +36,6 @@
 			<li class="nav_bar_links">Amend Prescription</li>
 			</a>
 
-			<a href="PharmacyRetrieve.html">
-			<li class="nav_bar_links">Retrieve a Prescription</li>
-			</a>
-
 			<a href="PhysicianRegister.html">
 			<li class="nav_bar_links">Register Surgery</li>
 			</a>
@@ -48,26 +44,27 @@
 			<li class="nav_bar_links_active">Register Pharmacy</li>
 			</a>
 
-				<a href="http://localhost:5000 "><img id="logo" src="static/Logo.jpeg" alt="MyPharma"></a>
+				<a href="http://localhost:5000 "><img id="logo" src="static/MyPharmaLogo.jpeg" alt="MyPharma"></a>
 
 		</ul>
 	</header>
 
 	<div id="wrapper">
+								<a href="http://localhost:5000"<p id="logo_title"> MyPharma.ie </p></a>
 
 
 		<form id="form" method="POST" action='/GPReg'>
 
-
-					<input type="number" name="PhysicianIMCN" placeholder="GP's Irish Medical Council Number"><br>
-
-                    <input type="text" name="SurgeryName" placeholder="Physician/Surgery Name"><br>
-
-                    <input type="number" name="SurgeryPhone" placeholder="Physician/Surgery Phone"><br>
-
-			<textarea type="text" name="SurgeryAddress" placeholder="Physician/Surgery Address"></textarea><br>
-
-                    <input type="email" name="SurgeryEmail" placeholder="Physician/Surgery Email"></input><br>
+					<p>GP's Irish Medical Council Number</p>
+					<input type="number" name="PhysicianIMCN"><br>
+					<p>GP/Surgery Name</p>
+					<input type="text" name="SurgeryName"><br>
+					<p>GP/Surgery Phone</p>
+                    <input type="number" name="SurgeryPhone"><br>
+					<p>GP/Surgery Address</p>
+					<textarea type="text" name="SurgeryAddress"></textarea><br>
+					<p>GP/Surgery Email</p>
+                    <input type="email" name="SurgeryEmail"><br>
 
 					<input type="submit" value="Submit">
 				</form>
