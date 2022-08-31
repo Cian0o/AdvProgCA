@@ -100,21 +100,48 @@ def regchem():
 @app.route('/PharmaReg', methods=["POST", "GET"])
 def PharmaReg():
     msg = "msg"
-    if request.method == "POST":
-        try:
-            PSIReg = request.form["PSIReg"]
-            PharmaName = request.form["PharmaName"]
-            PharmaPhone = request.form["PharmaPhone"]
-            PharmaAddress = request.form["PharmaAddress"]
-            PharmaEmail = request.form["PharmaEmail"]
-            with sqlite3.connect("mypharmaSQLite3.db") as con:
-                cur = con.cursor()
-                cur.execute("INSERT into pharmacies (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail) values (?,?,?, ?, ?)", (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail))
-                con.commit()
-                msg = "Pharmacy successfully registered"
-        finally:
-            return render_template("successRegPharm.html", msg=msg)
-            con.close()
+    with sqlite3.connect("mypharmaSQLite3.db") as con:
+        if request.method == "POST":
+            try:
+                PSIReg = request.form["PSIReg"]
+                PharmaName = request.form["PharmaName"]
+                PharmaPhone = request.form["PharmaPhone"]
+                PharmaAddress = request.form["PharmaAddress"]
+                PharmaEmail = request.form["PharmaEmail"]
+                realPharma = con.execute('select * from pharmaValidate where PSIReg = ?', [PSIReg])
+                validPharma = realPharma.fetchone()
+                if validPharma:
+                    with sqlite3.connect("mypharmaSQLite3.db") as con:
+                        cur = con.cursor()
+                        cur.execute("INSERT into pharmacies (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail) values (?,?,?, ?, ?)", (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail))
+                        con.commit()
+                        msg = "Pharmacy successfully registered"
+                        con.close()
+                    else:
+                    render_template("PharmaRegFail.html")
+                finally:
+                return render_template("successRegPharm.html", msg=msg)
+
+
+
+# @app.route('/PharmaReg', methods=["POST", "GET"])
+# def PharmaReg():
+#     msg = "msg"
+#     if request.method == "POST":
+#         try:
+#             PSIReg = request.form["PSIReg"]
+#             PharmaName = request.form["PharmaName"]
+#             PharmaPhone = request.form["PharmaPhone"]
+#             PharmaAddress = request.form["PharmaAddress"]
+#             PharmaEmail = request.form["PharmaEmail"]
+#             with sqlite3.connect("mypharmaSQLite3.db") as con:
+#                 cur = con.cursor()
+#                 cur.execute("INSERT into pharmacies (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail) values (?,?,?, ?, ?)", (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail))
+#                 con.commit()
+#                 msg = "Pharmacy successfully registered"
+#         finally:
+#             return render_template("successRegPharm.html", msg=msg)
+#             con.close()
 
 
 @app.route('/GetPrescription2Ammend.html')
