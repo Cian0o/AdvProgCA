@@ -97,6 +97,32 @@ def GPReg():
 def regchem():
     return render_template("PharmacyRegister.html")
 
+# @app.route('/PharmaReg', methods=["POST", "GET"])
+# def PharmaReg():
+#     msg = "msg"
+#     with sqlite3.connect("mypharmaSQLite3.db") as con:
+#         if request.method == "POST":
+#             try:
+#                 PSIReg = request.form["PSIReg"]
+#                 PharmaName = request.form["PharmaName"]
+#                 PharmaPhone = request.form["PharmaPhone"]
+#                 PharmaAddress = request.form["PharmaAddress"]
+#                 PharmaEmail = request.form["PharmaEmail"]
+#                 realPharma = con.execute('select * from pharmaValidate where PSIReg = ?', [PSIReg])
+#                 validPharma = realPharma.fetchone()
+#                 if validPharma:
+#                     with sqlite3.connect("mypharmaSQLite3.db") as con:
+#                         cur = con.cursor()
+#                         cur.execute("INSERT into pharmacies (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail) values (?,?,?, ?, ?)", (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail))
+#                         con.commit()
+#                         msg = "Pharmacy successfully registered"
+#                         con.close()
+#                 return render_template("successRegPharm.html", msg=msg)
+#             except Exception as e:
+#                 print('Hello')
+#                 print(e)
+#                 return render_template("PharmaRegFail.html")
+
 @app.route('/PharmaReg', methods=["POST", "GET"])
 def PharmaReg():
     msg = "msg"
@@ -116,12 +142,15 @@ def PharmaReg():
                         cur.execute("INSERT into pharmacies (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail) values (?,?,?, ?, ?)", (PSIReg, PharmaName, PharmaPhone, PharmaAddress, PharmaEmail))
                         con.commit()
                         msg = "Pharmacy successfully registered"
-                        con.close()
-                    else:
-                    render_template("PharmaRegFail.html")
-                finally:
-                return render_template("successRegPharm.html", msg=msg)
+                    return render_template("successRegPharm.html", msg=msg)
+                else:
+                     return render_template("PharmaRegFail.html")
+            except:
+                return render_template("index.html")
 
+@app.route('/pharmaRegFail.html')
+def pharmaRegFail():
+    return render_template("pharmaRegFail.html")
 
 
 # @app.route('/PharmaReg', methods=["POST", "GET"])
