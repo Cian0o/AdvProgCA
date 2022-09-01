@@ -73,7 +73,8 @@ footer{
 	height: 120px;
 	background: teal;
 	margin-top: -120px;
-	color: white;
+	color: black;
+	font-size: 25px;
 	text-align: center;
 }
 
